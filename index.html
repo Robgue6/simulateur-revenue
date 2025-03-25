@@ -327,15 +327,26 @@
           <p><span>✅ Ventes conclues</span> <strong>${Math.round(closedSales).toLocaleString()}</strong></p>
           <p><span>💰 CA offre principale</span> <strong>${formatCurrency(coreRevenue)}</strong></p>
         </div>
-        <div class="result-item">
-          <p><span>💸 CA upsell</span> <strong>${formatCurrency(upsellRevenue)}</strong></p>
-          <p><span>📈 CA total</span> <strong>${formatCurrency(totalRevenue)}</strong></p>
-          <p><span>🎯 Dépenses pub</span> <strong>${formatCurrency(adSpend)}</strong></p>
+        <div class="result-item" style="background: var(--card-background); border: 2px solid var(--primary-color);">
+          <p style="color: var(--text-primary); font-weight: 600; margin-bottom: 0.5rem;">📅 Projection Annuelle (12 webinars)</p>
+          <p><span>📈 CA total</span> <strong>${formatCurrency(totalRevenue * 12)}</strong></p>
+          <p><span>💎 Profit net</span> <strong>${formatCurrency(netProfit * 12)}</strong></p>
+          <p><span>🎯 Ventes totales</span> <strong>${Math.round(closedSales * 12).toLocaleString()}</strong></p>
         </div>
         <div class="result-item">
+          <p><span>💸 CA upsell</span> <strong>${formatCurrency(upsellRevenue)}</strong></p>
+          <p><span>🎯 Dépenses pub</span> <strong>${formatCurrency(adSpend)}</strong></p>
           <p><span>🤝 Commission closers</span> <strong>${formatCurrency(closerCost)}</strong></p>
+        </div>
+        <div class="result-item">
+          <p style="color: var(--text-primary); font-weight: 600; margin-bottom: 0.5rem;">💰 Par Webinar</p>
           <p><span>👤 Part Infopreneur (50%)</span> <strong>${formatCurrency(infopreneurShare)}</strong></p>
           <p><span>🏗️ Part Agence (50%)</span> <strong>${formatCurrency(agencyShare)}</strong></p>
+        </div>
+        <div class="result-item" style="background: var(--card-background); border: 2px solid var(--success-color);">
+          <p style="color: var(--text-primary); font-weight: 600; margin-bottom: 0.5rem;">💰 Projection Annuelle</p>
+          <p><span>👤 Part Infopreneur (50%)</span> <strong>${formatCurrency(infopreneurShare * 12)}</strong></p>
+          <p><span>🏗️ Part Agence (50%)</span> <strong>${formatCurrency(agencyShare * 12)}</strong></p>
         </div>
       `;
     }
