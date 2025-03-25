@@ -31,12 +31,12 @@
       background-color: var(--background-color);
       color: var(--text-primary);
       line-height: 1.5;
-      padding: 2rem;
+      padding: 1.5rem;
       min-height: 100vh;
     }
 
     .container {
-      max-width: 1200px;
+      max-width: 1400px;
       margin: 0 auto;
     }
 
@@ -44,76 +44,81 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
     }
 
     .header h1 {
-      font-size: 1.5rem;
+      font-size: 1.25rem;
       font-weight: 600;
       color: var(--text-primary);
+    }
+
+    .main-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    .left-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
     }
 
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 1.5rem;
-      margin-bottom: 2rem;
+      gap: 1rem;
     }
 
     .stat-card {
       background: var(--stat-card-bg);
-      border-radius: 12px;
-      padding: 1.5rem;
+      border-radius: 8px;
+      padding: 1rem;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       border: 1px solid var(--border-color);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .stat-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
     }
 
     .stat-card .value {
-      font-size: 1.75rem;
+      font-size: 1.25rem;
       font-weight: 600;
-      margin: 0.5rem 0;
+      margin: 0.25rem 0;
       color: var(--text-primary);
     }
 
     .stat-card .label {
       color: var(--text-secondary);
-      font-size: 0.875rem;
+      font-size: 0.75rem;
     }
 
     .inputs-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 1.5rem;
-      margin-bottom: 2rem;
-    }
-
-    .input-group {
+      gap: 1rem;
       background: var(--card-background);
-      border-radius: 12px;
       padding: 1.5rem;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      border-radius: 12px;
       border: 1px solid var(--border-color);
     }
 
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
     label {
-      display: block;
-      font-size: 0.875rem;
+      font-size: 0.75rem;
       font-weight: 500;
       color: var(--text-secondary);
-      margin-bottom: 0.5rem;
     }
 
     input[type="number"] {
       width: 100%;
-      padding: 0.75rem;
+      padding: 0.5rem;
       border: 1px solid var(--border-color);
-      border-radius: 8px;
+      border-radius: 6px;
       font-size: 0.875rem;
       transition: all 0.2s ease;
       background-color: var(--input-bg);
@@ -126,26 +131,22 @@
       box-shadow: 0 0 0 2px rgba(66, 133, 244, 0.2);
     }
 
-    input[type="number"]:hover {
-      border-color: var(--primary-color);
-    }
-
-    .results-card {
+    .results-panel {
       background: var(--card-background);
       border-radius: 12px;
-      padding: 2rem;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 1.5rem;
       border: 1px solid var(--border-color);
+      height: 100%;
     }
 
     .results-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
     }
 
     .result-item {
-      padding: 1.25rem;
+      padding: 1rem;
       border-radius: 8px;
       background: var(--stat-card-bg);
       border: 1px solid var(--border-color);
@@ -155,7 +156,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin: 0.5rem 0;
+      margin: 0.25rem 0;
       font-size: 0.875rem;
       color: var(--text-secondary);
     }
@@ -168,12 +169,13 @@
     .divider {
       height: 1px;
       background: var(--border-color);
-      margin: 1.5rem 0;
+      margin: 0.75rem 0;
     }
 
-    .emoji-icon {
-      font-size: 1.25rem;
-      margin-right: 0.5rem;
+    @media (max-width: 1200px) {
+      .main-content {
+        grid-template-columns: 1fr;
+      }
     }
 
     @media (max-width: 768px) {
@@ -197,66 +199,70 @@
       <h1>📊 Simulateur Avancé Webinar / Closing</h1>
     </div>
 
-    <div class="stats-grid">
-      <div class="stat-card">
-        <div class="label">Nombre de leads</div>
-        <div class="value" id="leads-stat">-</div>
-      </div>
-      <div class="stat-card">
-        <div class="label">CA Total</div>
-        <div class="value" id="revenue-stat">-</div>
-      </div>
-      <div class="stat-card">
-        <div class="label">Profit Net</div>
-        <div class="value" id="profit-stat">-</div>
-      </div>
-      <div class="stat-card">
-        <div class="label">Ventes Conclues</div>
-        <div class="value" id="sales-stat">-</div>
-      </div>
-    </div>
+    <div class="main-content">
+      <div class="left-panel">
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="label">Nombre de leads</div>
+            <div class="value" id="leads-stat">-</div>
+          </div>
+          <div class="stat-card">
+            <div class="label">CA Total</div>
+            <div class="value" id="revenue-stat">-</div>
+          </div>
+          <div class="stat-card">
+            <div class="label">Profit Net</div>
+            <div class="value" id="profit-stat">-</div>
+          </div>
+          <div class="stat-card">
+            <div class="label">Ventes Conclues</div>
+            <div class="value" id="sales-stat">-</div>
+          </div>
+        </div>
 
-    <div class="inputs-grid">
-      <div class="input-group">
-        <label>Nombre de leads générés</label>
-        <input type="number" id="leads" value="1000" />
+        <div class="inputs-grid">
+          <div class="input-group">
+            <label>Nombre de leads générés</label>
+            <input type="number" id="leads" value="1000" />
+          </div>
+          <div class="input-group">
+            <label>Coût par lead (€)</label>
+            <input type="number" id="costPerLead" value="3" />
+          </div>
+          <div class="input-group">
+            <label>Taux présence webinar (%)</label>
+            <input type="number" id="presenceRate" value="40" />
+          </div>
+          <div class="input-group">
+            <label>Taux RDV bookés (%)</label>
+            <input type="number" id="rdvRate" value="30" />
+          </div>
+          <div class="input-group">
+            <label>Taux closing RDV (%)</label>
+            <input type="number" id="closingRate" value="25" />
+          </div>
+          <div class="input-group">
+            <label>Prix offre principale (€)</label>
+            <input type="number" id="offerPrice" value="2000" />
+          </div>
+          <div class="input-group">
+            <label>Taux d'upsell (%)</label>
+            <input type="number" id="upsellRate" value="20" />
+          </div>
+          <div class="input-group">
+            <label>Montant upsell (€)</label>
+            <input type="number" id="upsellAmount" value="1000" />
+          </div>
+          <div class="input-group">
+            <label>Commission closers (%)</label>
+            <input type="number" id="closerCommission" value="15" />
+          </div>
+        </div>
       </div>
-      <div class="input-group">
-        <label>Coût par lead (€)</label>
-        <input type="number" id="costPerLead" value="3" />
-      </div>
-      <div class="input-group">
-        <label>Taux de présence au webinar (%)</label>
-        <input type="number" id="presenceRate" value="40" />
-      </div>
-      <div class="input-group">
-        <label>Taux de RDV bookés (%)</label>
-        <input type="number" id="rdvRate" value="30" />
-      </div>
-      <div class="input-group">
-        <label>Taux de closing des RDV (%)</label>
-        <input type="number" id="closingRate" value="25" />
-      </div>
-      <div class="input-group">
-        <label>Prix de l'offre principale (€)</label>
-        <input type="number" id="offerPrice" value="2000" />
-      </div>
-      <div class="input-group">
-        <label>Taux d'upsell (%)</label>
-        <input type="number" id="upsellRate" value="20" />
-      </div>
-      <div class="input-group">
-        <label>Montant de l'upsell (€)</label>
-        <input type="number" id="upsellAmount" value="1000" />
-      </div>
-      <div class="input-group">
-        <label>Commission closers (%)</label>
-        <input type="number" id="closerCommission" value="15" />
-      </div>
-    </div>
 
-    <div class="results-card">
-      <div class="results-grid" id="results">
+      <div class="results-panel">
+        <div class="results-grid" id="results">
+        </div>
       </div>
     </div>
   </div>
@@ -319,7 +325,8 @@
           <p><span>🎯 Dépenses pub</span> <strong>${formatCurrency(adSpend)}</strong></p>
           <p><span>🤝 Commission closers</span> <strong>${formatCurrency(closerCost)}</strong></p>
           <p><span>🧾 Profit net</span> <strong>${formatCurrency(netProfit)}</strong></p>
-          <div class="divider"></div>
+        </div>
+        <div class="result-item">
           <p><span>👤 Part Infopreneur (50%)</span> <strong>${formatCurrency(infopreneurShare)}</strong></p>
           <p><span>🏗️ Part Agence (50%)</span> <strong>${formatCurrency(agencyShare)}</strong></p>
         </div>
