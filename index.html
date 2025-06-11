@@ -20,6 +20,17 @@
       --input-bg: #1e2538;
     }
 
+    :root.light {
+      --background-color: #f9fafb;
+      --card-background: #ffffff;
+      --text-primary: #1a202c;
+      --text-secondary: #4a5568;
+      --border-color: #cbd5e0;
+      --hover-color: #e2e8f0;
+      --stat-card-bg: #edf2f7;
+      --input-bg: #ffffff;
+    }
+
     * {
       margin: 0;
       padding: 0;
@@ -172,6 +183,10 @@
       margin: 0.75rem 0;
     }
 
+    .actions { display: flex; gap: 0.5rem; }
+    .toggle-btn, .reset-btn { background: var(--primary-color); border: none; color: #fff; border-radius: 6px; padding: 0.4rem 0.75rem; font-size: 0.75rem; cursor: pointer; }
+    .toggle-btn:hover, .reset-btn:hover { opacity: 0.9; }
+
     @media (max-width: 1200px) {
       .main-content {
         grid-template-columns: 1fr;
@@ -197,6 +212,10 @@
   <div class="container">
     <div class="header">
       <h1>📊 Simulateur Avancé Webinar / Closing</h1>
+      <div class="actions">
+        <button id="themeToggle" class="toggle-btn">Mode clair</button>
+        <button id="resetButton" class="reset-btn">Réinitialiser</button>
+      </div>
     </div>
 
     <div class="main-content">
@@ -278,6 +297,21 @@
     const revenueStat = document.getElementById('revenue-stat');
     const profitStat = document.getElementById('profit-stat');
     const salesStat = document.getElementById('sales-stat');
+    const themeToggle = document.getElementById("themeToggle");
+    const resetButton = document.getElementById("resetButton");
+
+    const defaultValues = {
+      audienceSize: 10000,
+      leadConversionRate: 10,
+      costPerLead: 3,
+      presenceRate: 40,
+      rdvRate: 30,
+      closingRate: 25,
+      offerPrice: 2000,
+      upsellRate: 20,
+      upsellAmount: 1000,
+      closerCommission: 15
+    };
 
     function formatCurrency(value) {
       return new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(value);
@@ -353,6 +387,19 @@
 
     inputs.forEach(input => {
       input.addEventListener('input', calculate);
+    });
+    themeToggle.addEventListener("click", () => {
+      document.documentElement.classList.toggle("light");
+      const isLight = document.documentElement.classList.contains("light");
+      themeToggle.textContent = isLight ? "Mode sombre" : "Mode clair";
+    });
+
+    resetButton.addEventListener("click", () => {
+      Object.entries(defaultValues).forEach(([id, val]) => {
+        const input = document.getElementById(id);
+        if (input) input.value = val;
+      });
+      calculate();
     });
 
     calculate();
