@@ -13,6 +13,8 @@ Un outil de simulation pour calculer les revenus et les profits d'une campagne d
   - Commissions des closers
   - Profit net
   - Répartition entre Infopreneur et Agence
+  - Changement de thème clair/sombre
+  - Bouton de réinitialisation des paramètres
 
 ## Utilisation
 
@@ -27,6 +29,9 @@ Un outil de simulation pour calculer les revenus et les profits d'une campagne d
    - Taux d'upsell
    - Montant de l'upsell
    - Commission des closers
+
+
+Utilisez le bouton "Mode clair" pour basculer entre les thèmes et "Réinitialiser" pour revenir aux valeurs par défaut.
 
 Les résultats se mettent à jour automatiquement à chaque modification des paramètres.
 
